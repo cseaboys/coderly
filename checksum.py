@@ -1,20 +1,20 @@
 import sys
-from typing import List
 
 # redirect input
 sys.stdin = open("input.txt", "r")
 # 10101111
-# 4
+# 2
 sys.stdout = open("output.txt", "w")
 
 buff: str = input()
-s: int = int(input())
-
+num_of_chunks :int = int(input())
+chunks_length :int = len(buff)//num_of_chunks
 # chunk and sum data
-chunks: List[int] = ["0b" + buff[i : i + s] for i in range(0, len(buff), s)]
+chunks: list[str] = ["0b" + buff[i : i + chunks_length] for i in range(0, len(buff), chunks_length)]
 sum_of_chunks: str = bin(sum(map(lambda x: int(x, 2), chunks)))
 print("Chunks: ", *chunks)
 print(f"{sum_of_chunks=}")
+print(f"Checksum: {sum_of_chunks}")
 
 
 def get_complement(buff: str):

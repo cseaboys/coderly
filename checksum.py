@@ -7,14 +7,15 @@ sys.stdin = open("input.txt", "r")
 sys.stdout = open("output.txt", "w")
 
 buff: str = input()
-num_of_chunks :int = int(input())
-chunks_length :int = len(buff)//num_of_chunks
+num_of_chunks: int = int(input())
+chunks_length: int = len(buff) // num_of_chunks
 # chunk and sum data
-chunks: list[str] = ["0b" + buff[i : i + chunks_length] for i in range(0, len(buff), chunks_length)]
+chunks: list[str] = [
+    "0b" + buff[i : i + chunks_length] for i in range(0, len(buff), chunks_length)
+]
 sum_of_chunks: str = bin(sum(map(lambda x: int(x, 2), chunks)))
 print("Chunks: ", *chunks)
 print(f"{sum_of_chunks=}")
-print(f"Checksum: {sum_of_chunks}")
 
 
 def get_complement(buff: str):
@@ -23,6 +24,7 @@ def get_complement(buff: str):
 
 
 complement_of_chunks_sum = get_complement(sum_of_chunks)
+print(f"Checksum: {complement_of_chunks_sum}")
 print(f"{complement_of_chunks_sum=}")
 
 sum_of_chunks_and_complement = bin(

@@ -39,7 +39,7 @@ def main():
 
     p1, p2, p4 = get_parity()
     if p1 == p2 == p4 == 0:
-        print(f"No error found")
+        print("No error found")
         print(f"Encoded data: {data}")
     else:
         error_index = ((p4 * 4) + (p2 * 2) + p1) - 1

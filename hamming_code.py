@@ -1,17 +1,11 @@
 from random import choice, randint
 
-# import sys
-
-# sys.stdin = open("in", "r")
-# sys.stdout = open("out", "w")
-
 
 def main():
     data = [0] * 7
     buff = [int(i) for i in input("Enter 4 bits: ")]
     if len(buff) != 4:
         raise Exception("Length of buff should be 4")
-    # buff = [1, 0, 1, 1]
 
     data[2] = buff[0]
     data[4:] = buff[1:]

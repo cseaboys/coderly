@@ -39,7 +39,7 @@ while r.bit_length() >= len(gx):
     r ^= int(gx, 2) << (r.bit_length() - len(gx))
 print(f"CRC: {(crc := bin(r)[2:].zfill(len(gx)-1))}")
 r = int(mx + crc, 2)
-print(f"Encoded data: {r}")
+print(f"Encoded data: {bin(r)[2:]}")
 while r.bit_length() >= len(gx): 
     r ^= int(gx, 2) << (r.bit_length() - len(gx))
 print("Verification: Passed" if r == 0 else f"Failed ({bin(r)[2:].zfill(len(gx)-1)})")

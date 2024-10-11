@@ -21,6 +21,7 @@ async def send_data(data_buffer: list[object]):
 
 
 async def transmit_data(data: object) -> bool:
+    # simulate timeout
     await asyncio.sleep(random.randint(0, 2))
     if random.random() < 0.95:
         print(f"Data {data} received")

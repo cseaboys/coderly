@@ -17,7 +17,7 @@ async def send_data(data_buffer):
                 else:
                     print(f"NACK recieved for {data}")
             except asyncio.TimeoutError:
-                print(f"Timeout occured, retrying...")
+                print("Timeout occured, retrying...")
 
 
 async def transmit_data(data):

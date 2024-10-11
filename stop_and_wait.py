@@ -1,27 +1,26 @@
 import asyncio
 import random
 
-TIMEOUT = 1
+TIMEOUT: int = 1
 
 
-async def send_data(data_buffer):
+async def send_data(data_buffer: list[object]):
     for data in data_buffer:
         print(f"Transmitting data {data}")
         while True:
             try:
-                success = await asyncio.wait_for(transmit_data(data), TIMEOUT)
+                success: bool = await asyncio.wait_for(transmit_data(data), TIMEOUT)
                 if success:
-                    print(f"ACK recieved for data {data}")
+                    print(f"ACK received for data {data}")
                     print(f"Transmitted data {data} successfully")
                     break
                 else:
-                    print(f"NACK recieved for {data}")
+                    print(f"NACK received for {data}")
             except asyncio.TimeoutError:
-                print("Timeout occured, retrying transfer...")
+                print("Timeout occurred, retrying transfer...")
 
 
-async def transmit_data(data):
-    # Simulate timeout
+async def transmit_data(data: object) -> bool:
     await asyncio.sleep(random.randint(0, 2))
     if random.random() < 0.95:
         print(f"Data {data} received")
@@ -30,7 +29,7 @@ async def transmit_data(data):
 
 
 async def main():
-    data = [1, 2, 3, 4]
+    data: list[object] = [1, 2, 3, 4]
     await send_data(data)
 
 

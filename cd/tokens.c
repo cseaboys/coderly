@@ -1,5 +1,5 @@
-const char * delimiters =  " +-*/=;";
-const char * operators = "+-*/=";
+const char * delimiters =  " +-*/<>=;";
+const char * operators = "+-*/=<>";
  const char *keywords[] = {
         "auto",
         "break",

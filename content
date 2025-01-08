@@ -1,8 +1,9 @@
 content
+wall.jpeg
 
 cd:
 p1.c
-tokens.c
+yacc_lex_book
 
 cns:
 p2.c

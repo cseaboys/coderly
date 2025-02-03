@@ -82,7 +82,7 @@ public:
 };
 
 int main() {
-  freopen("input.txt", "r", stdin); // Read from file
+  freopen("input.txt", "r", stdin);
   Parser p;
   p.input();
   p.process();

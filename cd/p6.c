@@ -71,7 +71,6 @@ int main() {
   for (i = 0; i < n; i++)
     productions[i] = (char *)malloc(sizeof(char) * 100);
 
-  printf("Enter productions (e.g., S->aA/b):\n");
   for (i = 0; i < n; i++) {
     fgets(productions[i], 100, stdin);
     productions[i][strcspn(productions[i], "\n")] = '\0';

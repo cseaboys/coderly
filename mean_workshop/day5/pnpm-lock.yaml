@@ -8,16 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@angular/cli':
+        specifier: ^19.1.8
+        version: 19.1.8(@types/node@22.13.4)
       express:
         specifier: ^4.21.2
         version: 4.21.2
       mongoose:
         specifier: ^8.10.1
         version: 8.10.1(socks@2.8.4)
-    devDependencies:
-      '@angular/cli':
-        specifier: ^19.1.8
-        version: 19.1.8(@types/node@22.13.4)
 
 packages:
 

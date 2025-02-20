@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie</title>
+  </head>
+  <body>
+    <output id="canBook"></output>
+    <script>
+      function getNum(name,defaultVal='') {
+        return Number(prompt(`Enter ${name}`,defaultVal));
+      }
+      function addToBody(arg) {
+        document.body.innerHTML += arg;
+      }
+      function bookTickets() {
+        const ticketPrice = 1000;
+        const discountRate = 0.1;
+        const age = getNum("age: ",18);
+
+        if (age < 18) {
+          canBook.textContent = "You cant book tickets if youre below 18";
+          return;
+        }
+        const bookingCount = getNum("no of tickets: ",10);
+        addToBody(`Ticket price: ${ticketPrice}<br>`);
+        addToBody(`Booking count: ${bookingCount}<br>`);
+
+        const personsToSplit = getNum("no of persons to split: ",10);
+
+        addToBody(`No of persons to split: ${personsToSplit}<br>`);
+
+        const totalPrice = bookingCount * ticketPrice;
+
+        addToBody(`<br>Total price:${totalPrice}`);
+
+        const discountedPrice = Math.round(
+          totalPrice - totalPrice * discountRate
+        );
+        let discount = Math.round(discountRate * totalPrice);
+        addToBody(`<br>Discount Rate: ${discountRate * 100}`);
+        addToBody(`<br>Discount: ${discount}<br>
+        Discounted price:${discountedPrice}`);
+        addToBody(`<br> Price per head:${discountedPrice / personsToSplit}`);
+      }
+      bookTickets();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table</title>
+    <style>
+      td:hover {
+        text-decoration: underline;
+      }
+      td {
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <table
+      border="1"
+      style="border-collapse: collapse; color: rgb(251, 216, 216)"
+    >
+      <tr>
+        <td>Day</td>
+        <td>P1</td>
+        <td>P2</td>
+        <td>P3</td>
+        <td>P4</td>
+        <td>P5</td>
+        <td>P6</td>
+        <td>P7</td>
+      </tr>
+      <tr>
+        <td>Mon</td>
+        <td>S1</td>
+        <td>S2</td>
+        <td>S3</td>
+        <td>S4</td>
+        <td colspan="3">Lab</td>
+      </tr>
+      <tr>
+        <td>Tue</td>
+        <td colspan="3">Lab</td>
+        <td>S1</td>
+        <td>S2</td>
+        <td>S3</td>
+        <td>S4</td>
+      </tr>
+      <tr>
+        <td>Wed</td>
+        <td>S1</td>
+        <td>S2</td>
+        <td>S3</td>
+        <td>S4</td>
+        <td>s5</td>
+        <td>s6</td>
+        <td>S7</td>
+      </tr>
+      <tr>
+        <td>Thu</td>
+        <td>S1</td>
+        <td>S2</td>
+        <td>S3</td>
+        <td>S4</td>
+        <td>s5</td>
+        <td>s6</td>
+        <td>S7</td>
+      </tr>
+      <tr>
+        <td>Fri</td>
+
+        <td>S1</td>
+        <td>S2</td>
+        <td>S3</td>
+        <td>S4</td>
+        <td colspan="3">Lab</td>
+      </tr>
+      <tr>
+        <td>Sat</td>
+        <td colspan="3">Lab</td>
+        <td>S1</td>
+        <td>S2</td>
+        <td>S3</td>
+        <td>S4</td>
+      </tr>
+    </table>
+    <script>
+      let tds = document.querySelectorAll("td");
+      console.log(typeof(tds));
+      function getRandomRgbs() {
+        return `
+        ${parseInt(Math.random() * 100 + 70)},
+        ${parseInt(Math.random() * 100)},
+        ${parseInt(Math.random() * 100)}`;
+      }
+      Array.from(tds).forEach((el) => {
+        el.style.backgroundColor = `rgba(${getRandomRgbs()})`;
+      });
+    </script>
+  </body>
+</html>

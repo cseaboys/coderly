@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tasks</title>
+  </head>
+  <body
+    style="
+      font-size: 2rem;
+      color: white;
+      background-color: black;
+      display: grid;
+      place-items: center;
+      width: 90vw;
+      height: 90vh;
+    "
+  >
+    <output id="result"></output>
+    <output style="border: 5px solid white;padding: 20px;" id="movie"></output>
+    <script>
+      let result = document.querySelector("#result");
+      function getArea() {
+        let r = Number(prompt("Enter radius: ", 10));
+        return Math.PI * r * r;
+      }
+      const getArea2 = () => {
+        let r = Number(prompt("Enter radius: ", 10));
+        result.textContent += Math.PI * r * r;
+      };
+      //   console.log(getArea());
+      //   getArea2();
+      const movieDetails = {
+        name: "Abc",
+        starring: "Xyz",
+        rating: "10",
+      };
+      //   console.log(movieDetails);
+      //dont use innerHtml again
+      let movie = document.querySelector("#movie");
+      console.log(movie);
+      movie.innerHTML = `<p>Movie Name: ${movieDetails.name}</p>
+        <p>Movie Rating: ${movieDetails.rating}</p>
+      <p> Movie Starring: ${movieDetails.starring}</p>`;
+    </script>
+  </body>
+</html>

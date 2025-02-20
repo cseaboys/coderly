@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>dom_part</title>
+  </head>
+  <body>
+    <h2 id="h1" class="heading">Heading 1</h2>
+    <h2 class="heading" id="h2">Heading 2</h2>
+    <h2 id="h3">Heading 3</h2>
+    <h2 id="h4">Heading 4</h2>
+    <h2 id="h5">Heading 5</h2>
+    <input type="text" id="inp" />
+    <output id="output"></output>
+    <script>
+      /*
+        Array.from(document.getElementsByTagName("h2")).forEach((element) => {
+          element.style.color = "red";
+        });
+      */
+
+      /*
+        [...document.getElementsByTagName("h2")].forEach((element) => {
+          element.style.color = "red";
+        });
+      */
+
+      /*
+        const headings = document.getElementsByTagName("h2");
+        for (let i = 0; i < headings.length; i++) {
+          headings[i].style.color = "red";
+        }
+      */
+      let headings = Array.from(document.getElementsByTagName("h2"));
+
+      headings.forEach((el, i) => {
+        el.style.backgroundColor = `rgb(${i + 200},${i * 100},${i + 100})`;
+        console.log(`rgb(${i + 10},${i + 10},${i + 10})`);
+      });
+
+      headings.forEach((el, i) => (el.textContent = `Heading${i + 1}`));
+      let inp = document.querySelector("#inp");
+      let output = document.querySelector("#output");
+      inp.addEventListener("input", (e) => {
+        output.textContent = e.target.value;
+      });
+    </script>
+  </body>
+</html>

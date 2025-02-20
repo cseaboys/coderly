@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signin Form</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      display: grid;
+      place-items: center;
+      height: 100vh;
+      width: 100vw;
+      background-color: rgb(139, 193, 241);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    #form {
+      display: grid;
+      place-items: center;
+      gap: 40px;
+      width: 400px;
+      height: 500px;
+      border: 1px solid black;
+      font-size: 1.5rem;
+      background-color: rgb(245, 245, 141);
+      justify-content: center;
+      align-content: center;
+      border-radius: 10px;
+    }
+    input {
+      display: block;
+      padding: 5px;
+      height: 1.5rem;
+      font-size: 1.2rem;
+      border-radius: 5px;
+    }
+    #submit-btn {
+      border-radius: 10px;
+      height: 2.1rem;
+      width: 100%;
+      font-size: 1.3rem;
+      display: grid;
+      place-items: center;
+      display: block;
+    }
+    #submit-btn:hover {
+      background-color: transparent;
+      border-bottom: 3px black ridge;
+    }
+    #form:has(input:focus) {
+      background-color: #f0f8ff;
+    }
+  </style>
+  <body>
+    <div>
+      <h1
+        style="
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          margin-bottom: 10px;
+          text-align: center;
+        "
+      >
+        Signin Form
+      </h1>
+      <form id="form">
+        <label
+          >Username:
+          <input
+            style="color: coral"
+            type="text"
+            id="name"
+            required
+            placeholder="only alphanumeric,-,_"
+          />
+        </label>
+        <label
+          >Password
+          <input
+            style="color: rgb(131, 187, 237)"
+            type="password"
+            id="password"
+            min="6"
+            placeholder="atleast 6 alphanumerics"
+            required
+          />
+        </label>
+        <output id="result" style="font-size: 1.3rem"></output>
+        <label style="width: 100%">
+          <button type="submit" id="submit-btn">Submit</button>
+        </label>
+      </form>
+    </div>
+    <script>
+      let accepted = false;
+      const form = document.querySelector("#form");
+      const name = document.querySelector("#name");
+      const password = document.querySelector("#password");
+      const submitBtn = document.querySelector("#submit-btn");
+      const result = document.querySelector("#result");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name_val = name.value;
+        const password_val = password.value;
+        const name_regex = /^[a-zA-Z0-9-_]+$/;
+        const password_regex = /^[a-zA-Z0-9-_]{6,}$/;
+
+        if (!name_regex.test(name_val) || !password_regex.test(password_val)) {
+          result.textContent = "Username or password invalid";
+          result.style.color = "red";
+          return;
+        }
+        result.textContent = "Username and password are valid";
+        result.style.color = "green";
+      });
+    </script>
+  </body>
+</html>

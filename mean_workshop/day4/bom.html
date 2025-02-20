@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bom</title>
+  </head>
+  <body>
+    <button onclick="handle_open()">open</button>
+    <button onclick="handle_close()">close</button>
+    <button onclick="window_status()">check</button>
+
+    <form>
+      <input type="text" id="inp" />
+      <button type="submit" onclick="handleSubmit(event)">submit</button>
+    </form>
+    <script>
+      let handle = "";
+      const window_status = () => {
+        handle === ""
+          ? console.log("Window not opened yet")
+          : console.log("window", handle?.closed ? "closed" : "open");
+      };
+      const handle_open = () => {
+        handle = window.open("../laptop.jpg");
+        window_status();
+      };
+      const handle_close = () => {
+        handle.close();
+        window_status();
+      };
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        let handle = window.open();
+        handle.document.write(inp.value);
+      };
+    </script>
+  </body>
+</html>

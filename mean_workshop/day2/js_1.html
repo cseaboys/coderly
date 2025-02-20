@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>js_1</title>
+  </head>
+  <body>
+    <output id="out"></output>
+    <button onclick="window.print()">print doc</button>
+    <script>
+      //   document.write("From document.write");
+      console.log("from console.log");
+      // window.alert("Hello")
+      let a = 5;
+
+      console.log("value of a", a);
+      console.log(`Using backticks a: ${a}`);
+
+      var b = 3;
+
+      console.log("value of a", a);
+
+      let out = document.querySelector("#out");
+      out.textContent += `This content is added using js ${b}`;
+
+      console.log(`${a + b}
+      ${a - b}
+      ${a * b}
+      ${a / b}
+        `);
+
+      let c = 1;
+      let d = "1";
+
+      //== weak equality checker
+      //=== strict equality checker
+      //same for != and !==
+      console.log(c == d, c === d, c != d, c !== d);
+
+      console.log(a & b, a && b);
+      out.textContent += `"${c == d} ${c === d} ${c != d} ${c !== d}"`;
+
+      console.log(!true);
+
+      let str = "1234";
+
+      console.log(str.length);
+      console.log(str.toUpperCase());
+      console.log(str.toLocaleLowerCase());
+
+      console.log(typeof a, typeof a.toString());
+      //replace - replaces dirst instance of given thing
+      //replaceAll - replaces all instances
+      let fact = "javascript is a language";
+      console.log(fact.replace("javascript", "js"));
+
+      console.log(str.substring(1, 2));
+      console.log(str.concat(5));
+      let str2 = "0 123 ";
+      console.log(str2.trimRight());
+      console.log(str2.split(" "));
+      console.log("22ne1a0500".slice(-3));
+
+      //   let [x, y] = prompt("Enter two numbers:")
+      //     .split(" ")
+      //     .map((a) => Number(a));
+      //   console.log(x + y);
+      a = 2;
+
+      if (a > 0) {
+        console.log("positive");
+      } else if (a < 0) {
+        console.log("negative");
+      } else {
+        console.log("Not negative or positive");
+      }
+
+      // This errors
+      // const action = "say_hi";
+      // switch (action) {
+      //   case "say_hello":
+      //     const message = "hello";
+      //     console.log(message);
+      //     break;
+      //   case "say_hi":
+      //     const message = "hi";
+      //     console.log(message);
+      //     break;
+      //   default:
+      //     console.log("Empty action received.");
+      // }
+
+      //   To fix this, whenever you need to use let or const declarations in a case clause, wrap it in a block
+      // This works
+
+      const action = "say_hello";
+      switch (action) {
+        case "say_hello": {
+          const message = "hello";
+          console.log(message);
+          break;
+        }
+        case "say_hi": {
+          const message = "hi";
+          console.log(message);
+          break;
+        }
+        default: {
+          console.log("Empty action received.");
+        }
+      }
+
+      let z = 1;
+      while (z !== 5) console.log(++z);
+
+      do {
+        console.log(--z);
+      } while (z !== 1);
+
+      console.log(a % 2 === 0 ? "Even" : "Odd");
+
+      function sayHi(name) {
+        console.log(`Hi, ${name}`);
+      }
+      sayHi("User-1");
+      //IIFC
+      (function _() {
+        sayHi("User-0");
+      })();
+
+      const sayHello = (arg2, name = "User") => {
+        return `Hello, ${name} + ${arg2}`;
+      };
+      console.log(sayHello("Arg"));
+      console.log(sayHello("User-1"));
+      let p = 1,
+        q = 2;
+
+      function add(p, q) {
+        return p + q + globalThis.p + globalThis.q + "a1";
+      }
+      console.log(add(4, 3)); // 7a2
+
+      function add(...args) {
+        let sum = 0;
+        args.forEach((el) => (sum += el));
+        return sum + "a2";
+      }
+      console.log(add(1)); //1a2
+      console.log(add(2, 3)); //5a2
+      console.log(add(2, 3, 1)); //6a2
+
+      //a1 function behaviour is gone due to function hoisting, a2 will work even on the function call before its declaration
+
+      function F() {
+        console.log("a");
+      }
+      function F(arg) {
+        console.log(arg);
+      }
+      //same for this type of function
+      F(); //undefined
+      F("Prints me");
+
+      /*
+      Explanation regarding that, overlaoding and mimicing overloading 
+    JavaScript doesn't support function overloading in the same way that languages like Java or C++ do. With function declarations, hoisting allows later declarations to override earlier ones, which some might (mis)use to mimic overloading. However, using function expressions (or arrow functions) prevents hoisting and also prevents you from declaring two variables with the same name in the same scope.
+
+If you try to declare:
+
+const p1 = (a) => {
+console.log(a);
+};
+const p1 = (a, b) => {
+console.log(a, b);
+};
+You'll get an error (Cannot redeclare block-scoped variable 'p1') because you're attempting to redeclare the same variable name.
+
+Since JavaScript doesn't have built-in support for multiple signatures for a function, here are a few common workarounds:
+
+Single Function with Conditional Behavior
+Write one function that checks the number or types of arguments and behaves differently based on that, for example:
+function p1(...args) {
+if (args.length === 1) {
+console.log('One argument:', args[0]);
+} else if (args.length === 2) {
+console.log('Two arguments:', args[0], args[1]);
+} else {
+console.log('Arguments:', args);
+}
+}
+
+p1(5);       // One argument: 5
+p1(5, 10);   // Two arguments: 5 10
+Separate Functions with Different Names
+Instead of overloading a single function name, you can define multiple functions with distinct names reflecting their functionality:
+const p1Single = (a) => {
+console.log(a);
+};
+
+const p1Double = (a, b) => {
+console.log(a, b);
+};
+
+p1Single(5);       // 5
+p1Double(5, 10);   // 5 10
+Using an Object With Methods
+Group related overload-like behaviors in object methods or use a configuration object. This makes the intentions clear without needing literal overloading.
+const p1 = {
+single: (a) => {
+console.log(a);
+},
+double: (a, b) => {
+console.log(a, b);
+}
+};
+
+p1.single(5);      // 5
+p1.double(5, 10);  // 5 10
+By employing one of these strategies, you can simulate overloading-like behavior without running into issues with hoisting or redeclaration errors.
+    */
+
+      function hi() {
+        console.log("Hi ");
+      }
+      function callAnotherFunction(anotherFunction) {
+        anotherFunction();
+      }
+      callAnotherFunction(hi);
+      //prettier-ignore
+      const foo = x => x;
+      console.log(foo("Returning whats given as arg"));
+    </script>
+  </body>
+</html>

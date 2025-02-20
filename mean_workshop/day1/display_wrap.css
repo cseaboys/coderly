@@ -1,0 +1,17 @@
+.display_wrap > img {
+    display: block;
+    max-width: 500px;
+    max-height: 400px;
+  }
+  .display_wrap > button {
+    padding: 5px;
+    width: 100px;
+    height: 40px;
+  }
+  .display_wrap {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }

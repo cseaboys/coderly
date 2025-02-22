@@ -1,0 +1,6 @@
+{
+  "editor.fontSize": 18,
+  "code-runner.executorMap": {
+    "typescript": "bun run",
+  }
+}

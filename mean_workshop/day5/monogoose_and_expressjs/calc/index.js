@@ -16,32 +16,24 @@ router.post("/calc/add", (req, res) => {
   const result = a + b;
   res.send(JSON.stringify({
     status: 200,
-    result: result.toString(),
+    result: result
   }));
 });
 
-router.post("/calc/add", (req, res) => {
-  const { a, b } = req.body;
-  const result = BigInt(a) + BigInt(b);
-  res.send(JSON.stringify({
-    status: 200,
-    result: result.toString(),
-  }));
-});
 router.post("/calc/sub", (req, res) => {
   const { a, b } = req.body;
-  const result = BigInt(a) - BigInt(b);
+  const result = a - b;
   res.send(JSON.stringify({
     status: 200,
-    result: result.toString(),
+    result: result
   }));
 });
 router.post("/calc/mul", (req, res) => {
   const { a, b } = req.body;
-  const result = BigInt(a) * BigInt(b);
+  const result = a * b;
   res.send(JSON.stringify({
     status: 200,
-    result: result.toString(),
+    result: result
   }));
 });
 router.post("/calc/div", (req, res) => {
@@ -54,18 +46,18 @@ router.post("/calc/div", (req, res) => {
       },
     ));
   }
-  const result = a / b
+  const result = a / b;
   res.send(JSON.stringify({
     status: 200,
-    result: result.toString(),
+    result: result
   }));
 });
 router.post("/calc/pow", (req, res) => {
   const { a, b } = req.body;
-  const result = BigInt(a) ** BigInt(b);
+  const result = a / b;
   res.send(JSON.stringify({
     status: 200,
-    result: result.toString(),
+    result: result
   }));
 });
 

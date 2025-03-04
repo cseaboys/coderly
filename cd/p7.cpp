@@ -1,105 +1,59 @@
 #include <cstring>
 #include <iostream>
-
 using namespace std;
 
-struct production {
+struct production
+{
   char lf, rt[10];
-  int prod_rear, fl;
-};
-
-production prodn[20], prodn_new[20];
-int b = -1, q, n, m = 0, c = 0;
+  int fl;
+} prodn[20], prodn_new[20];
+int b = -1, q, n, c = 0;
 char alpha[10], extra[10], epsilon = '^';
 
-int main() {
-  cout << "\nEnter the number of Special characters (except non-terminals): ";
+int main()
+{
+  cout << "\nEnter number of special chars: ";
   cin >> q;
-  cout << "Enter the special characters for your production: ";
+  cout << "Enter special chars: ";
   for (int i = 0; i < q; i++)
     cin >> alpha[i];
-
-  cout << "\nEnter the number of productions: ";
+  cout << "\nEnter number of productions: ";
   cin >> n;
-  for (int i = 0; i < n; i++) {
-    cout << "Enter production " << i + 1;
-    cin >> prodn[i].lf >> prodn[i].rt;
-    prodn[i].prod_rear = strlen(prodn[i].rt);
-    prodn[i].fl = 0;
+  for (int i = 0; i < n; i++)
+  {
+    string t;
+    cout << "Production " << i + 1 << ": ";
+    cin >> t;
+    prodn[i] = {t[0], {}, 0};
+    strcpy(prodn[i].rt, t.substr(3).c_str());
   }
 
-  for (int i = 0; i < n; i++) {
-    for (int j = i + 1; j < n; j++) {
-      if (prodn[i].lf == prodn[j].lf) {
+  for (int i = 0; i < n; i++)
+    for (int j = i + 1; j < n; j++)
+      if (prodn[i].lf == prodn[j].lf && !prodn[i].fl && !prodn[j].fl)
+      {
         int k = 0, p = -1;
-        memset(extra, 0, sizeof(extra));
-        while (prodn[i].rt[k] && prodn[j].rt[k]) {
-          if (prodn[i].rt[k] == prodn[j].rt[k]) {
-            extra[++p] = prodn[i].rt[k];
-            prodn[i].fl = prodn[j].fl = 1;
-          } else if (p != -1) {
-            int h = 0, u = 0;
-            prodn_new[++b].lf = prodn[i].lf;
-            strcpy(prodn_new[b].rt, extra);
-            prodn_new[b].rt[p + 1] = alpha[c];
-            prodn_new[++b].lf = alpha[c];
-            for (int l = k; l < prodn[j].prod_rear; l++)
-              prodn_new[b].rt[h++] = prodn[j].rt[l];
-            prodn_new[++b].lf = alpha[c];
-            for (int l = k; l <= prodn[i].prod_rear; l++)
-              prodn_new[b].rt[u++] = prodn[i].rt[l];
-            m = 1;
-            break;
-          }
-          k++;
-        }
-
-        if (!prodn[i].rt[k] && !m) {
-          int h = 0;
-          prodn_new[++b].lf = prodn[i].lf;
-          strcpy(prodn_new[b].rt, extra);
+        while (prodn[i].rt[k] && prodn[j].rt[k] && prodn[i].rt[k] == prodn[j].rt[k])
+          extra[++p] = prodn[i].rt[k++];
+        if (p >= 0)
+        {
+          prodn[i].fl = prodn[j].fl = 1;
+          prodn_new[++b] = {prodn[i].lf};
+          strncpy(prodn_new[b].rt, extra, p + 1);
           prodn_new[b].rt[p + 1] = alpha[c];
-          prodn_new[++b].lf = alpha[c];
-          prodn_new[b].rt[0] = epsilon;
-          prodn_new[++b].lf = alpha[c];
-          for (int l = k; l < prodn[j].prod_rear; l++)
-            prodn_new[b].rt[h++] = prodn[j].rt[l];
+          prodn_new[++b] = {alpha[c]};
+          strcpy(prodn_new[b].rt, prodn[i].rt[k] ? prodn[i].rt + k : &epsilon);
+          prodn_new[++b] = {alpha[c]};
+          strcpy(prodn_new[b].rt, prodn[j].rt[k] ? prodn[j].rt + k : &epsilon);
+          c++;
         }
-
-        if (!prodn[j].rt[k] && !m) {
-          int h = 0;
-          prodn_new[++b].lf = prodn[i].lf;
-          strcpy(prodn_new[b].rt, extra);
-          prodn_new[b].rt[p + 1] = alpha[c];
-          prodn_new[++b].lf = alpha[c];
-          prodn_new[b].rt[0] = epsilon;
-          prodn_new[++b].lf = alpha[c];
-          for (int l = k; l < prodn[i].prod_rear; l++)
-            prodn_new[b].rt[h++] = prodn[i].rt[l];
-        }
-        c++;
-        m = 0;
       }
-    }
-  }
 
-  cout << "\n\n********************************";
-  cout << "\n AFTER LEFT FACTORING ";
-  cout << "\n********************************\n";
-
-  for (int i = 0; i <= b; i++) {
-    cout << "Production " << i + 1 << " is: " << prodn_new[i].lf << "->"
-         << prodn_new[i].rt << endl
-         << endl;
-  }
-
-  for (int i = 0; i < n; i++) {
-    if (!prodn[i].fl) {
-      cout << "Production " << i + 1 << " is: " << prodn[i].lf << "->"
-           << prodn[i].rt << endl
-           << endl;
-    }
-  }
-
-  return 0;
+  cout << "\n\n********************************\nAFTER LEFT FACTORING\n********************************\n";
+  int pc = 1;
+  for (int i = 0; i <= b; i++)
+    cout << "Production " << pc++ << ": " << prodn_new[i].lf << "->" << prodn_new[i].rt << endl;
+  for (int i = 0; i < n; i++)
+    if (!prodn[i].fl)
+      cout << "Production " << pc++ << ": " << prodn[i].lf << "->" << prodn[i].rt << endl;
 }

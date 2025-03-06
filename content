@@ -16,12 +16,14 @@ p5
 p5.c
 p6
 p6.c
+p7
+p7.cpp
 run.sh*
 var.c
 
 cns:
 Ceaser.java
-gnu-c-language-manual/
+HillCipher.java
 p2.c
 Substituition.java
 
@@ -43,6 +45,10 @@ utils/
 ml:
 exp2.ipynb
 exp3.ipynb
+exp4c.ipynb
+exp4c2.ipynb
+exp5.ipynb
+exp6.ipynb
 knn.ipynb
 knn_visualization.ipynb.ipynb
 sport.csv

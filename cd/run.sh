@@ -10,18 +10,19 @@ extension="${filename##*.}"
 
 case "$extension" in
     c)
-        gcc "$filename" -o "${filename%.c}"
+        gcc "$filename" -o "${filename%.c}" && \
+        "./${filename%.c}"
         ;;
     cpp)
-        g++ "$filename" -o "${filename%.cpp}"
+        g++ "$filename" -o "${filename%.cpp}" && \
+        "./${filename%.cpp}"
         ;;
     l)
-        output_file="lex.yy.c"  
+        output_file="lex.yy.c"
         exec_file="${filename%.l}"
-
         lex "$filename" && \
         gcc "$output_file" -o "$exec_file" -lfl && \
-        ./"$exec_file"
+        "./$exec_file"
         ;;
     *)
         echo "$filename is not a C, C++, or Lex source file."

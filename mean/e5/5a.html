@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Movie Details</title>
+  </head>
+  <body>
+    <h1>Movie Details</h1>
+    <ul id="movies"></ul>
+
+    <script>
+      const movies = [
+        {
+          name: "The Shawshank Redemption",
+          starring: "Tim Robbins, Morgan Freeman",
+          language: "English",
+          ratings: 9.3,
+        },
+        {
+          name: "The Godfather",
+          starring: "Marlon Brando, Al Pacino",
+          language: "English, Italian, Latin",
+          ratings: 9.2,
+        },
+        {
+          name: "The Dark Knight",
+          starring: "Christian Bale, Heath Ledger",
+          language: "English",
+          ratings: 9.0,
+        },
+      ];
+
+      const moviesList = document.getElementById("movies");
+
+      movies.forEach((movie) => {
+        const movieDetails = `
+                <li>
+                    <h2>${movie.name}</h2>
+                    <p><strong>Starring:</strong> ${movie.starring}</p>
+                    <p><strong>Language:</strong> ${movie.language}</p>
+                    <p><strong>Ratings:</strong> ${movie.ratings}</p>
+                </li>
+            `;
+        moviesList.insertAdjacentHTML("beforeend", movieDetails);
+      });
+    </script>
+  </body>
+</html>

@@ -7,8 +7,6 @@ function logStockPrice() {
   console.log(`Stock price: ${price}`);
 }
 
-// Log stock price every 3 seconds
-const intervalId = setInterval(logStockPrice, 3000);
+const intervalId = setInterval(logStockPrice, 1000);
 
-// Stop logging after 10 seconds
-setTimeout(() => clearInterval(intervalId), 10000);
+setTimeout(() => clearInterval(intervalId), 5000);

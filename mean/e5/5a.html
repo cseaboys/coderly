@@ -10,37 +10,30 @@
     <script>
       const movies = [
         {
-          name: "The Shawshank Redemption",
-          starring: "Tim Robbins, Morgan Freeman",
+          name: "A",
+          starring: "p1 p2",
           language: "English",
           ratings: 9.3,
         },
         {
-          name: "The Godfather",
-          starring: "Marlon Brando, Al Pacino",
-          language: "English, Italian, Latin",
-          ratings: 9.2,
-        },
-        {
-          name: "The Dark Knight",
-          starring: "Christian Bale, Heath Ledger",
+          name: "B",
+          starring: "p3 p1",
           language: "English",
-          ratings: 9.0,
+          ratings: 9.2,
         },
       ];
 
-      const moviesList = document.getElementById("movies");
-
+      const moviesEl = document.querySelector("#movies");
       movies.forEach((movie) => {
-        const movieDetails = `
-                <li>
-                    <h2>${movie.name}</h2>
-                    <p><strong>Starring:</strong> ${movie.starring}</p>
-                    <p><strong>Language:</strong> ${movie.language}</p>
-                    <p><strong>Ratings:</strong> ${movie.ratings}</p>
-                </li>
-            `;
-        moviesList.insertAdjacentHTML("beforeend", movieDetails);
+        const movieEL = `
+                  <li>
+                      <p>${movie.name}</p>
+                      <p>Starring: ${movie.starring}</p>
+                      <p>Language: ${movie.language}</p>
+                      <p>Ratings: ${movie.ratings}</p>
+                  </li>
+              `;
+        moviesEl.insertAdjacentHTML("beforeend", movieEL);
       });
     </script>
   </body>

@@ -1,0 +1,34 @@
+<html>
+  <body>
+    <input type="number" id="tickets" />
+    <button id="btn">buy</button>
+    <script>
+      btn.onclick = () => {
+        const numTickets = parseInt(tickets.value);
+        alert(bookMovieTickets(numTickets));
+      };
+      function bookMovieTickets(numTickets) {
+        let price = 150;
+        let totalPrice;
+
+        if (numTickets <= 2) {
+          totalPrice = numTickets * price;
+        } else if (numTickets >= 6) {
+          return "Booking is not allowed for 6 or more seats.";
+        } else {
+          price = 120;
+          totalPrice = numTickets * price;
+        }
+
+        return `Booking Details
+        Number of tickets: ${numTickets}
+        Ticket Price: Rs. ${price}
+        Total Price: Rs. ${totalPrice}`;
+      }
+
+      bookMovieTickets(2);
+      bookMovieTickets(4);
+      bookMovieTickets(8);
+    </script>
+  </body>
+</html>

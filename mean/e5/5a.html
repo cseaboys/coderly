@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Movie Details</title>
+  </head>
+  <body>
+    <h1>Movie Details</h1>
+    <ul id="movies"></ul>
+
+    <script>
+      const movies = [
+        {
+          name: "A",
+          starring: "p1 p2",
+          language: "English",
+          ratings: 9.3,
+        },
+        {
+          name: "B",
+          starring: "p3 p1",
+          language: "English",
+          ratings: 9.2,
+        },
+      ];
+
+      const moviesEl = document.querySelector("#movies");
+      movies.forEach((movie) => {
+        const movieEL = `
+                  <li>
+                      <p>${movie.name}</p>
+                      <p>Starring: ${movie.starring}</p>
+                      <p>Language: ${movie.language}</p>
+                      <p>Ratings: ${movie.ratings}</p>
+                  </li>
+              `;
+        moviesEl.insertAdjacentHTML("beforeend", movieEL);
+      });
+    </script>
+  </body>
+</html>

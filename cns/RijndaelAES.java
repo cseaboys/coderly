@@ -7,7 +7,7 @@ public class RijndaelAES {
     public static void main(String[] args) {
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-            keyGenerator.init(128); // AES key size (128, 192, or 256 bits)
+            keyGenerator.init(128);
             SecretKey secretKey = keyGenerator.generateKey();
 
             String plaintext = "This is a Rijndael AES logic!";

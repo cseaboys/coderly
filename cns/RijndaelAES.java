@@ -13,28 +13,19 @@ public class RijndaelAES {
             String plaintext = "This is a Rijndael AES logic!";
             System.out.println("Original Text: " + plaintext);
 
-            String encryptedText = encrypt(plaintext, secretKey);
-            System.out.println("Encrypted Text: " + encryptedText);
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            byte[] encBytes = cipher.doFinal(plaintext.getBytes());
+            String encString = Base64.getEncoder().encodeToString(encBytes);
 
-            String decryptedText = decrypt(encryptedText, secretKey);
-            System.out.println("Decrypted Text: " + decryptedText);
+            System.out.println("Encrypted text: " + encString);
 
+            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+            byte[] decBytes = cipher.doFinal(Base64.getDecoder().decode(encString));
+            String decString = new String(decBytes);
+            System.out.println("Decrypted text: " + decString);
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static String encrypt(String plaintext, SecretKey secretKey) throws Exception {
-        Cipher cipher = Cipher.getInstance("AES");
-        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-        byte[] encryptedBytes = cipher.doFinal(plaintext.getBytes());
-        return Base64.getEncoder().encodeToString(encryptedBytes);
-    }
-
-    public static String decrypt(String encryptedText, SecretKey secretKey) throws Exception {
-        Cipher cipher = Cipher.getInstance("AES");
-        cipher.init(Cipher.DECRYPT_MODE, secretKey);
-        byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(encryptedText));
-        return new String(decryptedBytes);
     }
 }

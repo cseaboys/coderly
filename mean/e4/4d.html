@@ -1,0 +1,50 @@
+<html>
+  <body>
+    <a href="#" id="link">Click me</a>
+    <div id="container"></div>
+    <style>
+      .cone {
+        width: 0;
+        height: 0;
+        border-bottom: 150px solid pink;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+      }
+
+      #container {
+        display: grid;
+        place-items: center;
+      }
+
+      #container.filled {
+        background-color: lightgray;
+      }
+    </style>
+
+    <script>
+      const link = document.getElementById("link");
+      const container = document.getElementById("container");
+
+      link.addEventListener("click", () => {
+        const heading = document.createElement("h1");
+        heading.textContent = "Welcome to the Magic Cone";
+
+        const message = document.createElement("p");
+        message.textContent = "Click it again to see the magic";
+
+        const cone = document.createElement("div");
+        cone.classList.add("cone");
+
+        if (container.classList.contains("filled")) {
+          cone.style.backgroundColor = "pink";
+          container.classList.remove("filled");
+        } else {
+          container.classList.add("filled");
+        }
+
+        container.innerHTML = "";
+        container.append(heading, message, cone);
+      });
+    </script>
+  </body>
+</html>

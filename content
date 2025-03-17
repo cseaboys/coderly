@@ -1,4 +1,7 @@
+configuration.nix
 content
+home.nix
+nix.conf
 
 cd:
 input.txt
@@ -18,39 +21,47 @@ p6
 p6.c
 p7
 p7.cpp
-run.sh*
+run.sh
 var.c
 
 cns:
+BlowfishCipher.java
 Ceaser.java
+Des.java
 HillCipher.java
-p2.c
+RijndaelAES.java
 Substituition.java
+p2.c
 
 mean:
-e1/
-e2/
-e3/
+e1
+e2
+e3
+e4
+e5
+e6
 
 mean_workshop:
-day1/
-day2/
-day3/
-day4/
-day5/
+day1
+day2
+day3
+day4
+day5
 prac1.html
 prac1.js
-utils/
+utils
 
 ml:
+exp12.ipynb
 exp2.ipynb
 exp3.ipynb
 exp4c.ipynb
 exp4c2.ipynb
 exp5.ipynb
 exp6.ipynb
+exp9.ipynb
 knn.ipynb
-knn_visualization.ipynb.ipynb
+knn_visualization.ipynb
 sport.csv
 temp.ipynb
 weather.csv

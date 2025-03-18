@@ -5,12 +5,12 @@ nix.conf
 
 cd:
 input.txt
-lex.yy.c
 lexp
 lexp.l
 manual.pdf
 p1
 p1.c
+p11_folder
 p3
 p3.c
 p4

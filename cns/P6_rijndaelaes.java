@@ -7,23 +7,23 @@ import java.util.Base64;
 public class P6_rijndaelaes {
     public static void main(String[] args) {
         try {
-            KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-            keyGenerator.init(128);
-            SecretKey secretKey = keyGenerator.generateKey();
+            KeyGenerator kg = KeyGenerator.getInstance("AES");
+            kg.init(128);
+            SecretKey sck = kg.generateKey();
             
-            String plaintext = "Hello world";
-            System.out.println("Original Text: " + plaintext);
+            String plainTxt = "Hello world";
+            System.out.println("Original Text: " + plainTxt);
             
             Cipher cipher = Cipher.getInstance("AES");
-            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-            String encryptedText = Base64.getEncoder().encodeToString(
-                cipher.doFinal(plaintext.getBytes()));
-            System.out.println("Encrypted Text: " + encryptedText);
+            cipher.init(Cipher.ENCRYPT_MODE, sck);
+            String encText = Base64.getEncoder().encodeToString(
+                cipher.doFinal(plainTxt.getBytes()));
+            System.out.println("Encrypted Text: " + encText);
             
-            cipher.init(Cipher.DECRYPT_MODE, secretKey);
-            String decryptedText = new String(
-                cipher.doFinal(Base64.getDecoder().decode(encryptedText)));
-            System.out.println("Decrypted Text: " + decryptedText);
+            cipher.init(Cipher.DECRYPT_MODE, sck);
+            String decText = new String(
+                cipher.doFinal(Base64.getDecoder().decode(encText)));
+            System.out.println("Decrypted Text: " + decText);
 
         } catch (Exception e) {
             e.printStackTrace();

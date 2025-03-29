@@ -4,11 +4,11 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
-public class Des {
+public class P4_des {
   public static void main(String[] args) {
     try {
-      KeyGenerator keygen = KeyGenerator.getInstance("DES");
-      SecretKey key = keygen.generateKey();
+      KeyGenerator kg = KeyGenerator.getInstance("DES");
+      SecretKey key = kg.generateKey();
       String pText = "Hello world";
       Cipher cipher = Cipher.getInstance("DES");
       cipher.init(Cipher.ENCRYPT_MODE, key);

@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Ceaser {
+public class P3a_ceaser {
 
     static String encrypt(String txt, int key) {
         return transform(txt, key);

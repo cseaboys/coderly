@@ -29,13 +29,17 @@ run.sh
 var.c
 
 cns:
-BlowfishCipher.java
-Ceaser.java
-Des.java
-HillCipher.java
-RijndaelAES.java
-Substituition.java
+P10_sha1.java
+P3a_ceaser.java
+P3b_substituition.java
+P3c_hillcipher.java
+P4_des.java
+P5_blowfishcipher.java
+P6_rijndaelaes.java
+P7_blowfishencryption.java
+P8_rsa.java
 p2.c
+p9.html
 
 mean:
 e1
@@ -44,6 +48,8 @@ e3
 e4
 e5
 e6
+e7
+e8
 
 mean_workshop:
 day1
@@ -56,8 +62,10 @@ prac1.js
 utils
 
 ml:
+Exp10_SimpleNaiveBayes.java
 exp12.ipynb
 exp13.ipynb
+exp14.ipynb
 exp15.ipynb
 exp2.ipynb
 exp3.ipynb
@@ -65,11 +73,14 @@ exp4c.ipynb
 exp4c2.ipynb
 exp5.ipynb
 exp6.ipynb
+exp7.ipynb
 exp9.ipynb
 knn.ipynb
 knn_visualization.ipynb
+model.png
 pyproject.toml
 sport.csv
+t.py
 temp.ipynb
 uv.lock
 weather.csv

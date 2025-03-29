@@ -2,7 +2,7 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
-public class BlowfishCipher {
+public class P5_blowfishcipher {
     private static final int ROUNDS = 16, BLOCK_SIZE = 8, S_BOXES_SIZE = 4 * 256;
     private int[] P, S;
     private static final int[] P_INIT = {
@@ -12,7 +12,7 @@ public class BlowfishCipher {
     };
     private static final int[] S_INIT = new int[S_BOXES_SIZE];
 
-    public BlowfishCipher(byte[] key) {
+    public P5_blowfishcipher(byte[] key) {
         P = Arrays.copyOf(P_INIT, P_INIT.length);
         S = Arrays.copyOf(S_INIT, S_INIT.length);
         for (int i = 0, len = key.length; i < P.length; i++) {
@@ -67,7 +67,7 @@ public class BlowfishCipher {
     public static void main(String[] args) {
         String text = "abcdefghi";
         byte[] key = "SecretKey".getBytes(StandardCharsets.UTF_8);
-        BlowfishCipher bf = new BlowfishCipher(key);
+        P5_blowfishcipher bf = new P5_blowfishcipher(key);
         System.out.println("Original: " + text);
         byte[] enc = bf.encryptBlock(text.getBytes(StandardCharsets.UTF_8));
         System.out.println("Encrypted: " + Arrays.toString(enc));

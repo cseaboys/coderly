@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-class Substituition {
+class P3b_substituition {
     static String sbs(String txt) {
         Map letter_map = new HashMap<>();
         for (int i = 0; i < 26; i++) {

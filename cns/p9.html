@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h1>Diffie-Hellman Key Exchange mechanism </h1>
+    <p>Exp9 : Implement the Diffie-Hellman Key Exchange mechanism using HTML and JavaScript. </p>
+</body>
+<script>
+    function power (m, n, o) {
+        if (n == 1)
+            return m;
+        else
+            return (Math.pow(m, n) % o);
+    }
+    let p, g, alice_pk, bob_pk, alice_x, bob_y, ka, kb;
+
+    p = 23;
+
+    g = 7;
+
+    document.write("The value of first prime number P:=" + p + "<br>");
+    document.write("The value of Second prime number G:=" + g + "<br>");
+
+    Aice_pk = 4;
+
+    bob_pk = 3;
+
+
+    alice_x = power(g, Aice_pk, p);
+
+    bob_y = power(g, bob_pk, p);
+
+
+    ka = power(bob_y, Aice_pk, p);
+
+    kb = power(alice_x, bob_pk, p);
+
+    document.write("The value of Alice Screte key Ka:=" + ka + "<br>");
+
+    document.write("<br>");
+
+    document.write("<br>");
+
+    document.write("The value of Bob Screte key Kb:=" + kb + "<br>");
+
+</script>
+
+</html>

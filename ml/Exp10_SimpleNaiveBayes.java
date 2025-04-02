@@ -5,8 +5,8 @@ public class Exp10_SimpleNaiveBayes {
     Map<String, Integer> classCounts = new HashMap<>();
     int totalDocs = 0;
 
-    void train(List<Document> data) {
-        for (Document d : data) {
+    void train(List<Doc> data) {
+        for (Doc d : data) {
             totalDocs++;
             classCounts.merge(d.label, 1, Integer::sum);
             Map<String, Integer> m = wordCounts.computeIfAbsent(d.label, k -> new HashMap<>());
@@ -15,7 +15,7 @@ public class Exp10_SimpleNaiveBayes {
         }
     }
 
-    String predict(Document d) {
+    String predict(Doc d) {
         double best = -Double.MAX_VALUE;
         String bestClass = null;
         for (String cls : classCounts.keySet()) {
@@ -31,9 +31,9 @@ public class Exp10_SimpleNaiveBayes {
         return bestClass;
     }
 
-    void evaluate(List<Document> data) {
+    void evaluate(List<Doc> data) {
         int correct = 0, tp = 0, fp = 0, fn = 0;
-        for (Document d : data) {
+        for (Doc d : data) {
             String p = predict(d);
             if (p.equals(d.label)) {
                 correct++;
@@ -51,25 +51,25 @@ public class Exp10_SimpleNaiveBayes {
         System.out.println("Recall: " + (double) tp / (tp + fn));
     }
 
-    static class Document {
+    static class Doc {
         String label;
         List<String> words;
 
-        Document(String l, String t) {
+        Doc(String l, String t) {
             label = l;
             words = Arrays.asList(t.split("\\s+"));
         }
     }
 
     public static void main(String[] args) {
-        List<Document> train = Arrays.asList(
-                new Document("positive", "good happy awesome"),
-                new Document("negative", "bad horrible sad"),
-                new Document("positive", "great awesome good"),
-                new Document("negative", "terrible sad bad"));
-        List<Document> test = Arrays.asList(
-                new Document("positive", "good great awesome"),
-                new Document("negative", "bad terrible horrible"));
+        List<Doc> train = Arrays.asList(
+                new Doc("positive", "good happy awesome"),
+                new Doc("negative", "bad horrible sad"),
+                new Doc("positive", "great awesome good"),
+                new Doc("negative", "terrible sad bad"));
+        List<Doc> test = Arrays.asList(
+                new Doc("positive", "good great awesome"),
+                new Doc("negative", "bad terrible horrible"));
         Exp10_SimpleNaiveBayes snb = new Exp10_SimpleNaiveBayes();
         snb.train(train);
         snb.evaluate(test);

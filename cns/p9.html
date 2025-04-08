@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h1>Diffie-Hellman Key Exchange</h1>
+    <script>
+        function power (m, n, o) {
+            return Math.pow(m, n) % o;
+        }
+
+        const p = 23, g = 7;
+        const alice_pk = 4, bob_pk = 3;
+
+        const alice_x = power(g, alice_pk, p);
+        const bob_y = power(g, bob_pk, p);
+        const ka = power(bob_y, alice_pk, p);
+        const kb = power(alice_x, bob_pk, p);
+
+        document.write(`p=${p}<br>
+                        g=${g}<br>
+                        Alice's private key=${ka}<br>
+                        Bobs's private key=${kb}`);
+    </script>
+</body>
+
+</html>

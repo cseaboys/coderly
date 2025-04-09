@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <form method="post" action="http://localhost:3000/login">
+      <input type="text" name="fname" placeholder="First name" />
+      <input type="text" name="lname" placeholder="Last name" />
+      <input type="submit" />
+    </form>
+  </body>
+</html>
+
+<script>
+  const express = require("express");
+  const path = require("path");
+
+  const app = express();
+  app.use(express.urlencoded({ extended: true }));
+
+  app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "a.html"));
+  });
+
+  app.post("/login", (req, res) => {
+    const fname = req.body.fname;
+    const lname = req.body.lname;
+
+    res.redirect(`/user/${fname + "-" + lname}`);
+  });
+
+  app.get("/user/:name", (req, res) => {
+    const name = req.params.name;
+    res.send(`<h1>Logged in as User: ${name}</h1>`);
+  });
+
+  app.listen(3000, () => {
+    console.log("http://localhost:3000");
+  });
+</script>
+
+<script>
+    import mongoose from "mongoose";
+  await mongoose
+    .connect("mongodb://localhost:27017")
+    .then(async () => {
+      const noteSchema = new mongoose.Schema({
+        title: String,
+        content: String,
+      });
+
+      const Note = mongoose.model("notes", noteSchema);
+
+      const note = await Note.create({
+        title: "My first note",
+        content: "Lorem ipsum",
+      });
+
+      console.log("Created note\n", note);
+
+      const notes = await Note.find();
+      console.log("Read note\n", notes);
+
+      const updatedNote = await Note.findByIdAndUpdate(
+        note._id,
+        { content: "Updated note" },
+        { new: true }
+      );
+      console.log("Updated note:\n", updatedNote);
+      const deletedNote = await Note.findByIdAndUpdate(note._id);
+      console.log("Deleted note\n", deletedNote);
+    })
+    .catch((err) => console.log(`Error: ${err}`))
+    .then(() => mongoose.connection.close());
+</script>
